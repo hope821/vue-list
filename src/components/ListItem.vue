@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 dl {padding: 10px; border: 1px solid #666}
 dl + dl {margin-top: 10px}
 </style>
