@@ -20,6 +20,18 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    loadUsers ({commit}) {
+      axios
+        .get('https://reqres.in/api/users?page=1')
+        .then(data => {
+          console.log(data.data.data)
+          let posts = data.data.data
+          commit('SET_POSTS', posts)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   mutations: {

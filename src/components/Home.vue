@@ -4,6 +4,9 @@
       <li>
         <router-link to="/list">list</router-link>
       </li>
+      <li>
+        <router-link to="/users">list users</router-link>
+      </li>
     </ul>
   </div>
 </template>

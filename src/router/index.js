@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '../components/Home.vue'
 import List from '../components/List.vue'
+import ListUsers from '../components/users/ListUsers.vue'
 
 
 Vue.use(VueRouter)
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/list',
     component: List
+  },
+  {
+    path: '/users',
+    component: ListUsers
   }
 ]
 
