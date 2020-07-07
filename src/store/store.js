@@ -25,7 +25,7 @@ export default new Vuex.Store({
       axios
         .get('https://reqres.in/api/users?page=1')
         .then(data => {
-          console.log('total pages = ' + data.data.total_pages)
+          // console.log('total pages = ' + data.data.total_pages)
           let posts = data.data.data
           commit('SET_POSTS', posts)
         })

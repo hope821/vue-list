@@ -8,7 +8,7 @@
       :itemAvatar="item.avatar"
       :key="index"
     />
-    <button type="button" class="more" @click="getMore">더보기</button>
+    <button type="button" class="more" @click="getMore" :class="{hide:btnHide}">더보기</button>
   </div>
 </template>
 
@@ -31,20 +31,32 @@ export default {
   },
   data: function() {
     return {
-      listPage: 1
+      loadPage: 2,
+      btnHide: false
     }
   },
   methods: {
     getMore() {
+      let loadPage = this.loadPage++;
       axios
-        .get('https://reqres.in/api/users?page=2')
+        .get('https://reqres.in/api/users?page=' + loadPage)
         .then(moreData => {
-          this.posts.push(...moreData.data.data)
-          console.log('추가')
+          if (loadPage <= moreData.data.total_pages) {
+            this.posts.push(...moreData.data.data)
+            console.log(loadPage + '번째 페이지 추가')
+            console.log('total page = ' + moreData.data.total_pages)
+            if (loadPage === moreData.data.total_pages) {
+              this.btnHide = true
+            } else {
+              return
+            }
+          } else {
+            return
+          }
         })
         .catch(error => {
           console.log(error)
-        })
+        });
     }
   }
 }
@@ -52,4 +64,5 @@ export default {
 
 <style>
 .more {display: block; width: 100%; height: 50px; margin-top: 10px; border: 0 none; font-weight: bold; background-color: #fee500; cursor: pointer}
+.hide {display: none}
 </style>
